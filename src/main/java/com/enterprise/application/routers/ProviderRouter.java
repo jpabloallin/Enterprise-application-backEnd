@@ -1,10 +1,12 @@
 package com.enterprise.application.routers;
 
 import com.enterprise.application.model.ProviderDTO;
+import com.enterprise.application.usecases.DeleteProviderUseCase;
 import com.enterprise.application.usecases.GetAllProvidersUseCase;
 import com.enterprise.application.usecases.SaveProviderUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -34,5 +36,12 @@ public class ProviderRouter {
         return route(GET("/get/providers"), request -> ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromPublisher(getAllProvidersUseCase.get(),ProviderDTO.class)));
+    }
+    //DELETE PATIENT BY ID
+    @Bean
+    RouterFunction<ServerResponse> deleteProviderRouter(DeleteProviderUseCase deleteProviderUseCase){
+        return route(DELETE("/delete/provider/{id}").and(accept(MediaType.APPLICATION_JSON)), request -> ServerResponse.status(HttpStatus.NO_CONTENT)
+                        .body(BodyInserters.fromPublisher(deleteProviderUseCase.apply(request.pathVariable("id")),Void.class)));
+
     }
 }
