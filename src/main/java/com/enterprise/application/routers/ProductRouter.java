@@ -29,6 +29,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class ProductRouter {
 
+    //SAVE PRODUCT
     @Bean
     @RouterOperation(path = "/save/product/", produces = {
             MediaType.APPLICATION_JSON_VALUE},
@@ -60,14 +61,7 @@ public class ProductRouter {
                                 .bodyValue(productDTO))
         );
     }
-    //GET ALL PATIENTS
-//    @Bean
-//    public RouterFunction<ServerResponse> getProvidersRouter(GetAllProvidersUseCase getAllProvidersUseCase){
-//        return route(GET("/get/providers"), request -> ServerResponse.ok()
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .body(BodyInserters.fromPublisher(getAllProvidersUseCase.get(),ProviderDTO.class)));
-//    }
-
+    //GET ALL PRODUCTS
     @Bean
     @RouterOperation(path = "/get/products", produces = {
             MediaType.APPLICATION_JSON_VALUE},
@@ -88,13 +82,7 @@ public class ProductRouter {
                         .body(BodyInserters.fromPublisher(getAllProductsUseCase.get(), ProductDTO.class))
         );
     }
-    //DELETE PATIENT BY ID
-//    @Bean
-//    RouterFunction<ServerResponse> deleteProviderRouter(DeleteProviderUseCase deleteProviderUseCase){
-//        return route(DELETE("/delete/provider/{id}").and(accept(MediaType.APPLICATION_JSON)), request -> ServerResponse.status(HttpStatus.NO_CONTENT)
-//                        .body(BodyInserters.fromPublisher(deleteProviderUseCase.apply(request.pathVariable("id")),Void.class)));
-//
-//    }
+    //DELETE PRODUCT BY ID
     @Bean
     @RouterOperation(path = "/delete/product/{id}", produces = {
             MediaType.APPLICATION_JSON_VALUE},

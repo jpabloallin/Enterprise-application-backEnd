@@ -31,15 +31,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class ProviderRouter {
 
-    //    @Bean
-//    public RouterFunction<ServerResponse> saveProviderRouter(SaveProviderUseCase saveProviderUseCase){
-//        //Function<Lo que recibe, lo que va a devolver>
-//        Function<ProviderDTO, Mono<ServerResponse>> saveExecution = providerDTO -> saveProviderUseCase.apply(providerDTO)
-//                .flatMap(result -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(result));
-//
-//        return route(POST("/save/provider")
-//                .and(accept(MediaType.APPLICATION_JSON)), request -> request.bodyToMono(ProviderDTO.class).flatMap(saveExecution));
-//    }
+    //SAVE PROVIDER
     @Bean
     @RouterOperation(path = "/save/provider/", produces = {
             MediaType.APPLICATION_JSON_VALUE},
@@ -71,14 +63,7 @@ public class ProviderRouter {
                                 .bodyValue(providerDto))
         );
     }
-    //GET ALL PATIENTS
-//    @Bean
-//    public RouterFunction<ServerResponse> getProvidersRouter(GetAllProvidersUseCase getAllProvidersUseCase){
-//        return route(GET("/get/providers"), request -> ServerResponse.ok()
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .body(BodyInserters.fromPublisher(getAllProvidersUseCase.get(),ProviderDTO.class)));
-//    }
-
+    //GET ALL PROVIDERS
     @Bean
     @RouterOperation(path = "/get/providers", produces = {
             MediaType.APPLICATION_JSON_VALUE},
@@ -99,13 +84,7 @@ public class ProviderRouter {
                         .body(BodyInserters.fromPublisher(getAllProvidersUseCase.get(), ProviderDTO.class))
         );
     }
-    //DELETE PATIENT BY ID
-//    @Bean
-//    RouterFunction<ServerResponse> deleteProviderRouter(DeleteProviderUseCase deleteProviderUseCase){
-//        return route(DELETE("/delete/provider/{id}").and(accept(MediaType.APPLICATION_JSON)), request -> ServerResponse.status(HttpStatus.NO_CONTENT)
-//                        .body(BodyInserters.fromPublisher(deleteProviderUseCase.apply(request.pathVariable("id")),Void.class)));
-//
-//    }
+    //DELETE PROVIDER BY ID
     @Bean
     @RouterOperation(path = "/delete/provider/{id}", produces = {
             MediaType.APPLICATION_JSON_VALUE},
