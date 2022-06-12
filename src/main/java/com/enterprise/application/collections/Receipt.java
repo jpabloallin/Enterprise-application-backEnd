@@ -16,8 +16,8 @@ import java.time.LocalDate;
 public class Receipt {
     @Id
     private String id;
-    private LocalDate date;
-    private ProviderDTO provider;
+    private String date;
+    private String providerId;
     private String productId;
     private Integer units;
 }

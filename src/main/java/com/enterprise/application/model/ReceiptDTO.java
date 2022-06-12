@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @Setter
 public class ReceiptDTO {
     private String id;
-    private LocalDate date;
-    private ProviderDTO provider;
+    private String date;
+    private String providerId;
     private String productId;
     private Integer units;
 
