@@ -61,6 +61,7 @@ public class ProductRouter {
                                 .bodyValue(productDTO))
         );
     }
+
     //GET ALL PRODUCTS
     @Bean
     @RouterOperation(path = "/get/products", produces = {
@@ -108,6 +109,34 @@ public class ProductRouter {
                 request -> deleteProductUseCase.apply(request.pathVariable("id"))
                         .flatMap((unused) -> ServerResponse.status(HttpStatus.ACCEPTED).build())
                         .onErrorResume(error -> ServerResponse.status(HttpStatus.NOT_FOUND).build())
+        );
+    }
+    //UPDATE PRODUCT
+    @Bean
+    @RouterOperation(path = "/update/product", produces = {
+            MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.PUT, beanClass = UpdateProductUseCase.class,
+            beanMethod = "apply",
+            operation = @Operation(
+                    operationId = "updateProduct",
+                    responses = {
+                        @ApiResponse(
+                            responseCode = "202",
+                            description = "successful operation",
+                            content = @Content(schema = @Schema(implementation = Product.class))),
+                        @ApiResponse(
+                            responseCode = "400",
+                            description = "Invalid Recipe details supplied")
+                    },
+                    requestBody = @RequestBody(content = @Content(schema = @Schema(implementation = Product.class)))
+            ))
+    public RouterFunction<ServerResponse> updateProductRouter(UpdateProductUseCase updateProductUseCase) {
+        return route(PUT("/update/product").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(ProductDTO.class)
+                        .flatMap(updateProductUseCase::apply)
+                        .flatMap(productDTO -> ServerResponse.status(HttpStatus.ACCEPTED)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .bodyValue(productDTO))
+                        .onErrorResume(error -> ServerResponse.status(HttpStatus.BAD_REQUEST).build())
         );
     }
 }
