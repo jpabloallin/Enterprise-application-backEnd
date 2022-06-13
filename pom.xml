@@ -14,7 +14,7 @@
 	<name>Enterprise-application-backEnd</name>
 	<description>Back side of project about an enterprise application using spring boot+reactjs+firebase+heroku+mongo atlas to practice the knowledge acquired throughout the training.</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
