@@ -7,6 +7,9 @@ import com.enterprise.application.usecases.interfaces.ISaveProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import javax.validation.Valid;
+
 @Service
 public class SaveProductUseCase implements ISaveProduct {
 
@@ -17,7 +20,7 @@ public class SaveProductUseCase implements ISaveProduct {
     private ProductMapper productMapper;
 
     @Override
-    public Mono<ProductDTO> apply(ProductDTO productDTO) {
+    public Mono<ProductDTO> apply(@Valid ProductDTO productDTO) {
         return productRepository
                 .save(productMapper
                         .convertDTOToEntity()

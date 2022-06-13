@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import javax.validation.Valid;
+
 @Service
 public class SaveProviderUseCase implements ISaveProvider {
     @Autowired
@@ -16,7 +18,7 @@ public class SaveProviderUseCase implements ISaveProvider {
     private ProviderMapper providerMapper;
 
     @Override
-    public Mono<ProviderDTO> apply(ProviderDTO providerDTO) {
+    public Mono<ProviderDTO> apply(@Valid ProviderDTO providerDTO) {
         return providerRepository
                 .save(providerMapper
                         .convertDTOToEntity()

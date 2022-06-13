@@ -10,6 +10,9 @@ import com.enterprise.application.usecases.interfaces.ISaveBill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import javax.validation.Valid;
+
 @Service
 public class SaveBillUseCase implements ISaveBill {
     @Autowired
@@ -19,7 +22,7 @@ public class SaveBillUseCase implements ISaveBill {
     private BillMapper billMapper;
 
     @Override
-    public Mono<BillDTO> apply(BillDTO billDTO) {
+    public Mono<BillDTO> apply(@Valid BillDTO billDTO) {
         return billRepository
                 .save(billMapper
                         .convertDTOToEntity()

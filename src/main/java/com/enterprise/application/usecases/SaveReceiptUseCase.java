@@ -9,6 +9,9 @@ import com.enterprise.application.usecases.interfaces.ISaveReceipt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import javax.validation.Valid;
+
 @Service
 public class SaveReceiptUseCase implements ISaveReceipt {
     @Autowired
@@ -17,7 +20,7 @@ public class SaveReceiptUseCase implements ISaveReceipt {
     private ReceiptMapper receiptMapper;
 
     @Override
-    public Mono<ReceiptDTO> apply(ReceiptDTO receiptDTO) {
+    public Mono<ReceiptDTO> apply(@Valid ReceiptDTO receiptDTO) {
         return receiptRepository.save(receiptMapper.convertDTOToEntity().apply(receiptDTO)).map(receipt -> receiptMapper.convertEntityToDTO().apply(receipt));
     }
 }
