@@ -22,7 +22,7 @@ public class SaveBillUseCase implements ISaveBill {
     private BillMapper billMapper;
 
     @Override
-    public Mono<BillDTO> apply(@Valid BillDTO billDTO) {
+    public Mono<BillDTO> apply(BillDTO billDTO) {
         return billRepository
                 .save(billMapper
                         .convertDTOToEntity()

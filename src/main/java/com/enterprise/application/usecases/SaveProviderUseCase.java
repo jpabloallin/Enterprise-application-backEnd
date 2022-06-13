@@ -18,7 +18,7 @@ public class SaveProviderUseCase implements ISaveProvider {
     private ProviderMapper providerMapper;
 
     @Override
-    public Mono<ProviderDTO> apply(@Valid ProviderDTO providerDTO) {
+    public Mono<ProviderDTO> apply(ProviderDTO providerDTO) {
         return providerRepository
                 .save(providerMapper
                         .convertDTOToEntity()

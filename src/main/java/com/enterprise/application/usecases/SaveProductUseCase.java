@@ -20,7 +20,7 @@ public class SaveProductUseCase implements ISaveProduct {
     private ProductMapper productMapper;
 
     @Override
-    public Mono<ProductDTO> apply(@Valid ProductDTO productDTO) {
+    public Mono<ProductDTO> apply(ProductDTO productDTO) {
         return productRepository
                 .save(productMapper
                         .convertDTOToEntity()

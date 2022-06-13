@@ -14,11 +14,8 @@ import java.time.LocalDate;
 public class ReceiptDTO {
     private String id;
     private String date;
-    @NotEmpty
     private String providerId;
-    @NotEmpty
     private String productId;
-    @NotEmpty
     private Integer units;
 
 }

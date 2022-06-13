@@ -20,7 +20,7 @@ public class SaveReceiptUseCase implements ISaveReceipt {
     private ReceiptMapper receiptMapper;
 
     @Override
-    public Mono<ReceiptDTO> apply(@Valid ReceiptDTO receiptDTO) {
+    public Mono<ReceiptDTO> apply(ReceiptDTO receiptDTO) {
         return receiptRepository.save(receiptMapper.convertDTOToEntity().apply(receiptDTO)).map(receipt -> receiptMapper.convertEntityToDTO().apply(receipt));
     }
 }
