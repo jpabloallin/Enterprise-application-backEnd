@@ -15,5 +15,5 @@ public class BillDTO {
     private String client;
     private String seller;
     private List<SoldProduct> productsSold;
-    private Integer total;
+    private Double total;
 }

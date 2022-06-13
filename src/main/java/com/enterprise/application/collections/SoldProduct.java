@@ -8,4 +8,6 @@ public class SoldProduct {
     private String name;
     private Double price;
     private Integer units;
+    private Double subTotal;
+    private Integer balance;
 }
